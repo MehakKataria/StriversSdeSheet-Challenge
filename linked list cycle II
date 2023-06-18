@@ -1,0 +1,68 @@
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node()
+            {
+                this->data = 0;
+                next = NULL;
+            }
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+            Node(int data, Node* next)
+            {
+                this->data = data;
+                this->next = next;
+            }
+        };
+
+
+*****************************************************************/
+
+Node *firstNode(Node *head)
+{
+    //    Write your code here.
+    Node*slow=head;
+    Node*fast=head;
+    bool flag=false;
+
+    while(fast!=NULL)
+    {
+        if(fast->next!=NULL)
+        {
+            fast=fast->next->next;
+        }
+        else{
+            break;
+        }
+        slow=slow->next;
+
+        if(slow==fast)
+        {
+            flag=true;
+            break;
+        }
+    }
+
+    if(flag==true)
+    {
+        Node*temp=head;
+        while(temp->data>0)
+        {
+            
+            temp->data=-temp->data;
+            temp=temp->next;
+        }
+        return temp;
+    }
+
+    return NULL;
+}
